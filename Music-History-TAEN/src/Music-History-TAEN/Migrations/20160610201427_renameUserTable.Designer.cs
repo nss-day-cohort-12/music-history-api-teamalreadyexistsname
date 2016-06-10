@@ -8,9 +8,10 @@ using Music_History_TAEN.Models;
 namespace MusicHistoryTAEN.Migrations
 {
     [DbContext(typeof(MusicHistoryContext))]
-    partial class MusicHistoryContextModelSnapshot : ModelSnapshot
+    [Migration("20160610201427_renameUserTable")]
+    partial class renameUserTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.0.0-rc2-20901")

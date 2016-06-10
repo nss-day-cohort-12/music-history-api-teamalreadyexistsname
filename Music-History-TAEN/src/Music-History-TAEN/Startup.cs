@@ -33,6 +33,16 @@ namespace Music_History_TAEN
             services.AddDbContext<MusicHistoryContext>(options => options.UseSqlServer(connection));
             // Add framework services.
             services.AddMvc();
+
+
+            services.AddCors(options =>
+            {
+            options.AddPolicy("AllowDevEnvironment",
+                builder => builder
+                            .AllowAnyOrigin()
+                            .AllowAnyHeader()
+                            .AllowAnyMethod());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,6 +52,8 @@ namespace Music_History_TAEN
             loggerFactory.AddDebug();
 
             app.UseMvc();
+
+
         }
     }
 }
