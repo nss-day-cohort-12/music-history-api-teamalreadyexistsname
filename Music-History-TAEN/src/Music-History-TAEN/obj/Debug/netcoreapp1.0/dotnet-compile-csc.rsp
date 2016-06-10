@@ -194,8 +194,8 @@
 -resource:"C:\Users\Dugger\Documents\Visual Studio 2015\Projects\music-history-api-teamalreadyexistsname\Music-History-TAEN\src\Music-History-TAEN\obj\Debug\netcoreapp1.0\Music-History-TAENdotnet-compile.deps.json",Music-History-TAEN.deps.json
 "C:\Users\Dugger\Documents\Visual Studio 2015\Projects\music-history-api-teamalreadyexistsname\Music-History-TAEN\src\Music-History-TAEN\Program.cs"
 "C:\Users\Dugger\Documents\Visual Studio 2015\Projects\music-history-api-teamalreadyexistsname\Music-History-TAEN\src\Music-History-TAEN\Startup.cs"
+"C:\Users\Dugger\Documents\Visual Studio 2015\Projects\music-history-api-teamalreadyexistsname\Music-History-TAEN\src\Music-History-TAEN\Controllers\AlbumController.cs"
 "C:\Users\Dugger\Documents\Visual Studio 2015\Projects\music-history-api-teamalreadyexistsname\Music-History-TAEN\src\Music-History-TAEN\Controllers\TrackController.cs"
-"C:\Users\Dugger\Documents\Visual Studio 2015\Projects\music-history-api-teamalreadyexistsname\Music-History-TAEN\src\Music-History-TAEN\Controllers\ValuesController.cs"
 "C:\Users\Dugger\Documents\Visual Studio 2015\Projects\music-history-api-teamalreadyexistsname\Music-History-TAEN\src\Music-History-TAEN\Migrations\20160610170808_InitialDBBuild.cs"
 "C:\Users\Dugger\Documents\Visual Studio 2015\Projects\music-history-api-teamalreadyexistsname\Music-History-TAEN\src\Music-History-TAEN\Migrations\20160610170808_InitialDBBuild.Designer.cs"
 "C:\Users\Dugger\Documents\Visual Studio 2015\Projects\music-history-api-teamalreadyexistsname\Music-History-TAEN\src\Music-History-TAEN\Migrations\20160610201427_renameUserTable.cs"
