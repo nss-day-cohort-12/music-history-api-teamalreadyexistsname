@@ -15,6 +15,6 @@ namespace Music_History_TAEN.Models
         public DbSet<Album> Album { get; set; }
         public DbSet<Track> Track { get; set; }
         public DbSet<Artist> Artist { get; set; }
-        public DbSet<User> User { get; set; }
+        public DbSet<Users> Users { get; set; }
     }
 }
