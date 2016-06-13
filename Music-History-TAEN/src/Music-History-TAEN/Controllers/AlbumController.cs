@@ -25,8 +25,6 @@ namespace Music_History_TAEN.Controllers
             _context = context;
         }
 
-
-        // GET: api/values
         // GET: api/Track
         [HttpGet]
         public IActionResult Get([FromQuery]int? AlbumId, [FromQuery]string AlbumTitle)
@@ -106,14 +104,59 @@ namespace Music_History_TAEN.Controllers
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public IActionResult Put(int id, [FromBody] Album album)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (id != album.AlbumId)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(album).State = EntityState.Modified;
+
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!AlbumExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return new StatusCodeResult(StatusCodes.Status204NoContent);
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            Album album = _context.Album.Single(m => m.AlbumId == id);
+            if (album == null)
+            {
+                return NotFound();
+            }
+
+            _context.Album.Remove(album);
+            _context.SaveChanges();
+
+            return Ok(album);
         }
     }
 }
+
