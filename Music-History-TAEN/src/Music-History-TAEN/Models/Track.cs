@@ -13,6 +13,6 @@ namespace Music_History_TAEN.Models
         public string TrackTitle { get; set; }
         public string AlbumTitle { get; set; }
         public string Genre { get; set; }
-        public string Author { get; set; }
+        public string Artist { get; set; }
     }
 }

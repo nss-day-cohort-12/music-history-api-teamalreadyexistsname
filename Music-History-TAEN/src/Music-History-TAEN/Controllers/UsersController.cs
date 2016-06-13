@@ -15,42 +15,44 @@ namespace Music_History_TAEN.Controllers
     [Produces("application/json")]
     [EnableCors("AllowDevEnvironment")]
     [Route("api/[controller]")]
-    public class TrackController : Controller
+    public class UsersController : Controller
     {
-
+        
         private MusicHistoryContext _context;
 
-        public TrackController(MusicHistoryContext context)
+        public UsersController(MusicHistoryContext context)
         {
             _context = context;
         }
 
-        // GET: api/Track
+
+
+        // GET: api/values
         [HttpGet]
-        public IActionResult Get([FromQuery]int? TrackId, [FromQuery]string TrackTitle)
+        public IActionResult Get([FromQuery]int? UserId, [FromQuery]string Username)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            IQueryable<Track> Track = from i in _context.Track select i;
+            IQueryable<Users> Users = from i in _context.Users select i;
 
-            if (TrackId != null)
+            if (UserId != null)
             {
-                Track = Track.Where(inv => inv.TrackId == TrackId);
+                Users = Users.Where(inv => inv.UserId == UserId);
             }
 
-            if (Track == null)
+            if (Users == null)
             {
                 return NotFound();
             }
 
-            return Ok(Track);
+            return Ok(Users);
         }
 
         // GET api/values/5
-        [HttpGet("{id}", Name ="GetTrack")]
+        [HttpGet("{id}", Name = "GetUser")]
         public IActionResult Get(int id)
         {
             if (!ModelState.IsValid)
@@ -58,33 +60,34 @@ namespace Music_History_TAEN.Controllers
                 return BadRequest(ModelState);
             }
 
-            Track track = _context.Track.Single(m => m.TrackId == id);
+            Users user = _context.Users.Single(m => m.UserId == id);
 
-            if (track == null)
+            if (user == null)
             {
                 return NotFound();
             }
 
-            return Ok(track);
+            return Ok(user);
         }
+
 
         // POST api/values
         [HttpPost]
-        public IActionResult Post([FromBody]Track track)
+        public IActionResult Post([FromBody]Users user)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _context.Track.Add(track);
+            _context.Users.Add(user);
             try
             {
                 _context.SaveChanges();
             }
             catch (DbUpdateException)
             {
-                if (TrackExists(track.TrackId))
+                if (UserExists(user.UserId))
                 {
                     return new StatusCodeResult(StatusCodes.Status409Conflict);
                 }
@@ -94,30 +97,29 @@ namespace Music_History_TAEN.Controllers
                 }
             }
 
-            return CreatedAtRoute("GetTrack", new { id = track.TrackId }, track);
+            return CreatedAtRoute("GetUser", new { id = user.UserId }, user);
         }
 
-        private bool TrackExists(int id)
+        private bool UserExists(int id)
         {
-            return _context.Track.Count(e => e.TrackId == id) > 0;
+            return _context.Users.Count(e => e.UserId == id) > 0;
         }
-
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] Track track)
+        public IActionResult Put(int id, [FromBody] Users user)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != track.TrackId)
+            if (id != user.UserId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(track).State = EntityState.Modified;
+            _context.Entry(user).State = EntityState.Modified;
 
             try
             {
@@ -125,7 +127,7 @@ namespace Music_History_TAEN.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TrackExists(id))
+                if (!UserExists(id))
                 {
                     return NotFound();
                 }
@@ -147,16 +149,16 @@ namespace Music_History_TAEN.Controllers
                 return BadRequest(ModelState);
             }
 
-            Track track = _context.Track.Single(m => m.TrackId == id);
-            if (track == null)
+            Users user  = _context.Users.Single(m => m.UserId == id);
+            if (user == null)
             {
                 return NotFound();
             }
 
-            _context.Track.Remove(track);
+            _context.Users.Remove(user);
             _context.SaveChanges();
 
-            return Ok(track);
+            return Ok(user);
         }
     }
 }
