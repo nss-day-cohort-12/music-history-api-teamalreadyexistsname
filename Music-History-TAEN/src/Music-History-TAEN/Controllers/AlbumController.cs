@@ -8,7 +8,6 @@ using Music_History_TAEN.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 
-// For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Music_History_TAEN.Controllers
 {
@@ -27,7 +26,7 @@ namespace Music_History_TAEN.Controllers
 
         // GET: api/Track
         [HttpGet]
-        public IActionResult Get([FromQuery]int? AlbumId, [FromQuery]string AlbumTitle)
+        public IActionResult Get([FromQuery]int? AlbumId, [FromQuery]string AlbumTitle, [FromQuery]string Artist, [FromQuery]int? YearReleased)
         {
             if (!ModelState.IsValid)
             {
@@ -39,6 +38,21 @@ namespace Music_History_TAEN.Controllers
             if (AlbumId != null)
             {
                 Album = Album.Where(inv => inv.AlbumId == AlbumId);
+            }
+
+            if (AlbumTitle != null)
+            {
+                Album = Album.Where(inv => inv.AlbumTitle == AlbumTitle);
+            }
+
+            if (Artist != null)
+            {
+                Album = Album.Where(inv => inv.Artist == Artist);
+            }
+
+            if (YearReleased != null)
+            {
+                Album = Album.Where(inv => inv.YearReleased == YearReleased);
             }
 
             if (Album == null)
